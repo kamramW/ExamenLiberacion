@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de sesión en Netflix</title>
+    <link rel="stylesheet" href="estilosinicio.css">
+</head>
+<body>
+    <div class="fondo">
+        <img src="/imagenes/logoneflix2.png" alt="Logo de Netflix" class="logo-superior-izquierda">
+        <div class="contenedor-inicio">
+            <form id="formularioInicio" class="formulario">
+                <h1>Iniciar sesión</h1>
+                <div class="grupo-input">
+                    <input type="text" id="correoOTelefono" placeholder="Correo o número de teléfono" required>
+                    <span class="mensaje-error" id="mensajeError"></span>
+                </div>
+                <div class="grupo-input">
+                    <input type="password" id="contrasena" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="boton">Iniciar sesión</button>
+                <div class="opciones">
+                    <label><input type="checkbox" id="recordarme"> Recuérdame</label>
+                    <a href="#">¿Necesitas ayuda?</a>
+                </div>
+            </form>
+            <div class="registro">
+                <p>¿Eres nuevo en Netflix? <a href="#">Suscríbete ahora</a>.</p>
+                <p>Esta página está protegida por Google reCAPTCHA para garantizar que no eres un robot. <a href="#">Más información</a>.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("formularioInicio").addEventListener("submit", function(evento) {
+            evento.preventDefault();
+            const correoOTelefono = document.getElementById("correoOTelefono").value;
+            const mensajeError = document.getElementById("mensajeError");
+
+            
+            const regexCorreo = /^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,7}$/;
+            
+            const regexTelefono = /^\+591\s?[67]\d{7}$/
+
+            if (!regexCorreo.test(correoOTelefono) && !regexTelefono.test(correoOTelefono)) {
+                mensajeError.textContent = "Por favor, ingresa un correo o número de teléfono válido.";
+            } else {
+                mensajeError.textContent = "";
+                window.location.href = "./indexminions.html";
+                alert("Inicio de sesión exitoso.");
+                
+                
+            }
+        });
+    </script>
+</body>
+</html>
